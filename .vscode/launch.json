@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BackapiApplication<api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.back.api.BackapiApplication",
+            "projectName": "api",
+            "args": ""
+        }
+    ]
+}
