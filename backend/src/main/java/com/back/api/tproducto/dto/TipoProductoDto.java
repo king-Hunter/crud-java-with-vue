@@ -9,7 +9,7 @@ public class TipoProductoDto implements Serializable{
     private static final long serialVersionUID = 6281854760303955369L;
   
     
-    private long idTipoProducto;
+    private Integer idTipoProducto;
     private String nombre;
     private Boolean activo;
 
@@ -17,17 +17,17 @@ public class TipoProductoDto implements Serializable{
         super();
     }
 
-    public TipoProductoDto(long idTipoProducto, String nombre, Boolean activo) {
+    public TipoProductoDto(Integer idTipoProducto, String nombre, Boolean activo) {
         this.idTipoProducto = idTipoProducto;
         this.nombre = nombre;
         this.activo = activo;
     }
 
-    public long getIdTipoProducto() {
+    public Integer getIdTipoProducto() {
         return this.idTipoProducto;
     }
 
-    public TipoProductoDto setIdTipoProducto(long idTipoProducto) {
+    public TipoProductoDto setIdTipoProducto(Integer idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
         return this;
     }

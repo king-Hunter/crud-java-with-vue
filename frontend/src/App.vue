@@ -1,14 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <b-navbar type="dark" variant="dark">
+    <b-navbar-nav>
+      <router-link to="/"><b-navbar-brand href="/"> Mi Almacen de productos </b-navbar-brand></router-link>
+
+      <!-- Navbar dropdowns -->
+      <b-nav-item-dropdown text="Producto" right>
+          <router-link to="/Producto"><b-dropdown-item href="/Producto">Productos</b-dropdown-item></router-link>
+          <router-link to="/Tproducto" ><b-dropdown-item href="/Tproducto">Tipo de productos</b-dropdown-item></router-link>
+        </b-nav-item-dropdown>
+
+      <b-nav-item-dropdown text="Almacen" right>  
+          <router-link to="/almacen"><b-dropdown-item href="/alamacen">Almacenado</b-dropdown-item></router-link>
+          <router-link to="/talmacen" ><b-dropdown-item href="/talamacen">Almacen</b-dropdown-item></router-link>
+        </b-nav-item-dropdown>
+    </b-navbar-nav>
+  </b-navbar>
+
+  
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
+
+
+a:hover {
+    text-decoration: none !important;
+}
+
+
+.dropdown-item:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #e9ecef;
+}
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

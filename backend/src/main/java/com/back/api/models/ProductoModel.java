@@ -1,6 +1,8 @@
 package com.back.api.models;
 
 import javax.persistence.*;
+
+
 import java.io.Serializable;
 
 @Entity
@@ -16,7 +18,7 @@ public class ProductoModel  extends GlobalModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private Long idProducto;
+    private Integer idProducto;
 
     @Column
     private String nombre;
@@ -29,14 +31,14 @@ public class ProductoModel  extends GlobalModel implements Serializable{
     /**
      * @return Long return the idProducto
      */
-    public Long getIdProducto() {
+    public Integer getIdProducto() {
         return idProducto;
     }
 
     /**
      * @param idProducto the idProducto to set
      */
-    public ProductoModel setIdProducto(Long idProducto) {
+    public ProductoModel setIdProducto(Integer idProducto) {
         this.idProducto = idProducto;
         return this;
     }

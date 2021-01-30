@@ -1,11 +1,14 @@
-package com.back.api.tproducto.controllers;
+package com.back.api.producto.controllers;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import com.back.api.general.RespuestaServicio;
-import com.back.api.tproducto.dto.TipoProductoDto;
-import com.back.api.tproducto.services.TipoProductoService;
+import com.back.api.models.ProductoModel;
+import com.back.api.models.TipoProductoModel;
+import com.back.api.producto.dto.ProductoDto;
+import com.back.api.producto.services.ProductoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/tipo/producto")
-public class TipoProductoController implements Serializable {
+@RequestMapping("/api/producto")
+public class ProductoControlador implements Serializable {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 2952285141872656480L;
-    
+    private static final long serialVersionUID = 185091148813875077L;
     @Autowired
-    private transient TipoProductoService tipoProductoService;
+    private transient ProductoService productoService;
 
     @GetMapping("/obtener")
-    public ResponseEntity<RespuestaServicio<List<TipoProductoDto>>> obtenerTipoProductosActivos(){
-        final RespuestaServicio<List<TipoProductoDto>> respuesta = new RespuestaServicio<>();
+    public ResponseEntity<RespuestaServicio<List<ProductoDto>>> obtenerTipoProductosActivos() {
+        final RespuestaServicio<List<ProductoDto>> respuesta = new RespuestaServicio<>();
         try {
-            List<TipoProductoDto> lista = tipoProductoService.obtenerProductos();            
+            List<ProductoDto> lista = productoService.obtenerProductos();
             return respuesta.obtenerRespuesta(lista, "Datos de tipo de producto obtenidos correctamente");
         } catch (Exception e) {
             return respuesta.obtenerRespuestaError("Ocurrio un error al obtener los datos");
@@ -41,10 +40,11 @@ public class TipoProductoController implements Serializable {
     }
 
     @PostMapping("/guardar")
-    public ResponseEntity<RespuestaServicio<Boolean>> guardarProducto(@RequestBody TipoProductoDto tipoProductoDto){
+    public ResponseEntity<RespuestaServicio<Boolean>> guardarProducto(@RequestBody ProductoDto productoDto) {
         final RespuestaServicio<Boolean> respuesta = new RespuestaServicio<>();
+
         try {
-            boolean res = tipoProductoService.guardarTipoProducto(tipoProductoDto);
+            boolean res = productoService.guardarTipoProducto(productoDto);
             return respuesta.obtenerRespuesta(res, "Datos guardados correctamente");
         } catch (Exception e) {
             return respuesta.obtenerRespuestaError("Ocurrio un error al guardar los datos");
@@ -52,14 +52,13 @@ public class TipoProductoController implements Serializable {
     }
     
     @DeleteMapping("/eliminar")
-    public ResponseEntity<RespuestaServicio<Boolean>> eliminarProducto(@RequestParam Integer idTipoProducto){
+    public ResponseEntity<RespuestaServicio<Boolean>> eliminarProducto(@RequestParam Integer idProducto){
         final RespuestaServicio<Boolean> respuesta = new RespuestaServicio<>();
         try {
-            boolean res = tipoProductoService.deleteRegistro(idTipoProducto);
+            boolean res = productoService.deleteRegistro(idProducto);
             return respuesta.obtenerRespuesta(res, "Se desabilito correctamente");
         } catch (Exception e) {
             return respuesta.obtenerRespuestaError("Ocurrio un err al procesar la peticion");
         }
     }
-    
 }
