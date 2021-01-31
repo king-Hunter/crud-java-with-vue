@@ -1,4 +1,4 @@
-package com.back.api.producto.services;
+package com.back.api.logica.services;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,13 +9,9 @@ import com.back.api.helper.Helpers;
 import com.back.api.models.ProductoModel;
 import com.back.api.models.TipoProductoModel;
 import com.back.api.repository.ProductoRepository;
-import com.back.api.repository.TipoProductoRepository;
-import com.back.api.tproducto.dto.TipoProductoDto;
-import com.back.api.tproducto.services.TipoProductoService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.back.api.producto.dto.ProductoDto;
+import com.back.api.logica.dto.ProductoDto;
 
 @Service
 @Transactional
@@ -24,10 +20,9 @@ public class ProductoService implements Serializable {
     /**
      *
      */
-    private static final long serialVersionUID = 4023641517036577650L;
+    private static final long serialVersionUID = -1683031301876483645L;
     @Autowired
     private transient ProductoRepository productoRepository;
-    private transient TipoProductoRepository tipoProductoRepository;
     private transient TipoProductoService tipoProductoService;
 
     public List<ProductoDto> obtenerProductos() {
@@ -45,9 +40,7 @@ public class ProductoService implements Serializable {
 
     public Boolean guardarTipoProducto(ProductoDto productoDto) {
         ProductoModel producto = new ProductoModel();
-        TipoProductoDto tipoProductoDto = new TipoProductoDto();
-        tipoProductoDto.setIdTipoProducto(productoDto.getIdTipoProducto());
-        TipoProductoModel tipoProducto = tipoProductoRepository.findById(tipoProductoDto.getIdTipoProducto()).get();
+        Optional<TipoProductoModel> tipoProducto = tipoProductoService.unaColumna(productoDto.getIdTipoProducto());
         if (productoRepository.existsById(productoDto.getIdProducto())) {
             producto = productoRepository.findById(productoDto.getIdProducto()).get();
         } else {
@@ -56,7 +49,8 @@ public class ProductoService implements Serializable {
         }
 
         producto.setNombre(productoDto.getNombre());
-        producto.setTipoProductoModel(tipoProducto);
+        
+        producto.setTipoProductoModel(tipoProducto.get());
         producto.setFechaModificacion(Helpers.obtenerFechaActual());
         producto.setUsuarioModificacion((long) 1);
         producto.setRegistroActivo(productoDto.isActivo());
@@ -76,5 +70,5 @@ public class ProductoService implements Serializable {
         return true;
 
     }
-
+    
 }

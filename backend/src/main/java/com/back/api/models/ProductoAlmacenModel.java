@@ -5,8 +5,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "r_producto_almacen")
 public class ProductoAlmacenModel extends GlobalModel implements Serializable{
-    
-    
+
     /**
      *
      */

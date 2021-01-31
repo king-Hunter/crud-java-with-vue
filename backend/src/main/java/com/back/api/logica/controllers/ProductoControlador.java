@@ -1,14 +1,11 @@
-package com.back.api.producto.controllers;
+package com.back.api.logica.controllers;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
 import com.back.api.general.RespuestaServicio;
-import com.back.api.models.ProductoModel;
-import com.back.api.models.TipoProductoModel;
-import com.back.api.producto.dto.ProductoDto;
-import com.back.api.producto.services.ProductoService;
+import com.back.api.logica.dto.ProductoDto;
+import com.back.api.logica.services.ProductoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +15,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/producto")
 public class ProductoControlador implements Serializable {
 
-    private static final long serialVersionUID = 185091148813875077L;
+    
+    /**
+     *
+     */
+    private static final long serialVersionUID = -6913878735513078394L;
     @Autowired
     private transient ProductoService productoService;
 

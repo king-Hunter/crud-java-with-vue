@@ -8,13 +8,13 @@ import java.io.Serializable;
 @Entity
 @Table(name = "m_almacen")
 public class AlmacenModel extends GlobalModel implements Serializable {
-
-
+    
+    
     /**
      *
      */
     private static final long serialVersionUID = 2406308368555264254L;
-    
+
     @Id
     @Column
     private Integer idAlmacen;

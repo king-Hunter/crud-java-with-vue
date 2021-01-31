@@ -1,15 +1,15 @@
-package com.back.api.producto.dto;
+package com.back.api.logica.dto;
 
 import java.io.Serializable;
 
 
 public class ProductoDto implements Serializable{
 
-    /**
-	 *
-	 */
-	private static final long serialVersionUID = 2858956686828080493L;
-	private Integer idProducto;
+	/**
+     *
+     */
+    private static final long serialVersionUID = 8919787064615967925L;
+    private Integer idProducto;
     private String nombre;
     private Integer idTipoProducto;
     private Boolean activo;

@@ -8,12 +8,10 @@ import java.io.Serializable;
 @Entity
 @Table(name = "m_producto")
 public class ProductoModel  extends GlobalModel implements Serializable{
-
-    
     /**
      *
      */
-    private static final long serialVersionUID = 8929496367981491674L;
+    private static final long serialVersionUID = 614295388779883922L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

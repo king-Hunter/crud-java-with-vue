@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Table(name = "c_tipo_producto")
 public class TipoProductoModel extends GlobalModel implements Serializable {
 
-    
+
     /**
      *
      */

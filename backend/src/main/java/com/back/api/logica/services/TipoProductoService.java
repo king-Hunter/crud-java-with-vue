@@ -1,29 +1,26 @@
-package com.back.api.tproducto.services;
+package com.back.api.logica.services;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.back.api.helper.Helpers;
 import com.back.api.models.TipoProductoModel;
 import com.back.api.repository.TipoProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.back.api.tproducto.dto.TipoProductoDto;
+import com.back.api.logica.dto.TipoProductoDto;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 public class TipoProductoService implements Serializable {
 
-    private transient Logger log = LoggerFactory.getLogger(TipoProductoService.class);
-    /*
+    /**
      *
      */
-    private static final long serialVersionUID = -35188523617740855L;
+    private static final long serialVersionUID = -2314140315779049974L;
     @Autowired
     private transient TipoProductoRepository tipoProductoRepository;
 
@@ -68,6 +65,13 @@ public class TipoProductoService implements Serializable {
         tipoProductoRepository.save(datos.get());
 
         return true;
-
+    }
+    public Optional<TipoProductoModel> unaColumna(Integer id){
+        Optional<TipoProductoModel> datos = tipoProductoRepository.findById(id);
+        
+        if (datos.isPresent()) {
+            return datos;    
+        }
+        return null;
     }
 }
