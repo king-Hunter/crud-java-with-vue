@@ -9,6 +9,8 @@ import com.back.api.helper.Helpers;
 import com.back.api.models.ProductoModel;
 import com.back.api.models.TipoProductoModel;
 import com.back.api.repository.ProductoRepository;
+import com.back.api.repository.TipoProductoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.back.api.logica.dto.ProductoDto;
@@ -23,7 +25,7 @@ public class ProductoService implements Serializable {
     private static final long serialVersionUID = -1683031301876483645L;
     @Autowired
     private transient ProductoRepository productoRepository;
-    private transient TipoProductoService tipoProductoService;
+    private transient TipoProductoRepository tipoProductoRepository;
 
     public List<ProductoDto> obtenerProductos() {
 
@@ -40,7 +42,7 @@ public class ProductoService implements Serializable {
 
     public Boolean guardarTipoProducto(ProductoDto productoDto) {
         ProductoModel producto = new ProductoModel();
-        Optional<TipoProductoModel> tipoProducto = tipoProductoService.unaColumna(productoDto.getIdTipoProducto());
+        Optional<TipoProductoModel> tipoProducto = unaColumna(productoDto.getIdTipoProducto());
         if (productoRepository.existsById(productoDto.getIdProducto())) {
             producto = productoRepository.findById(productoDto.getIdProducto()).get();
         } else {
@@ -56,6 +58,14 @@ public class ProductoService implements Serializable {
         producto.setRegistroActivo(productoDto.isActivo());
         productoRepository.save(producto);
         return true;
+    }
+    public Optional<TipoProductoModel> unaColumna(Integer id){
+        Optional<TipoProductoModel> datos = tipoProductoRepository.findById(id);
+        
+        if (datos.isPresent()) {
+            return datos;    
+        }
+        return datos;    
     }
 
     public Boolean deleteRegistro(Integer id) {

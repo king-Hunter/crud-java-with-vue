@@ -66,12 +66,5 @@ public class TipoProductoService implements Serializable {
 
         return true;
     }
-    public Optional<TipoProductoModel> unaColumna(Integer id){
-        Optional<TipoProductoModel> datos = tipoProductoRepository.findById(id);
-        
-        if (datos.isPresent()) {
-            return datos;    
-        }
-        return null;
-    }
+    
 }
